@@ -1,3 +1,5 @@
+package aplicacion;
+
 import java.rmi.*;
 import java.rmi.server.*;
 import java.rmi.registry.Registry;

@@ -1,3 +1,5 @@
+package aplicacion;
+
 import java.rmi.*;
 
 /**
@@ -6,8 +8,7 @@ import java.rmi.*;
  * @author M. L. Liu
  */
 
-public interface CallbackClientInterface 
-  extends java.rmi.Remote{
+public interface CallbackClientInterface extends java.rmi.Remote{
   // This remote method is invoked by a callback
   // server to make a callback to an client which
   // implements this interface.

@@ -1,3 +1,5 @@
+package aplicacion;
+
 import java.io.*;
 import java.rmi.*;
 

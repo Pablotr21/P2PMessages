@@ -1,3 +1,4 @@
+package aplicacion;
 import java.rmi.*;
 //Hola
 /**
