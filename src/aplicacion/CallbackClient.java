@@ -31,30 +31,19 @@ public class CallbackClient {
         "Enter the RMIregistry port number:");
       String portNum = br.readLine();
       RMIPort = Integer.parseInt(portNum); 
-      System.out.println(
-        "Enter how many seconds to stay registered:");
-      String timeDuration = br.readLine();
-      int time = Integer.parseInt(timeDuration);
       String registryURL = 
         "rmi://localhost:" + portNum + "/callback";  
       // find the remote object and cast it to an 
       //   interface object
       CallbackServerInterface h =
         (CallbackServerInterface)Naming.lookup(registryURL);
-      System.out.println("Lookup completed " );
-      System.out.println("Server said " + h.sayHello());
+      //System.out.println("Lookup completed " );
+      //System.out.println("Server said " + h.sayHello());
       CallbackClientInterface callbackObj = 
         new CallbackClientImpl();
       // register for callback
       h.registerForCallback(callbackObj);
-      System.out.println("Registered for callback.");
-      try {
-        Thread.sleep(time * 1000);
-      }
-      catch (InterruptedException ex){ // sleep over
-      }
-      h.unregisterForCallback(callbackObj);
-      System.out.println("Unregistered for callback.");
+      
     } // end try 
     catch (Exception e) {
       System.out.println(
