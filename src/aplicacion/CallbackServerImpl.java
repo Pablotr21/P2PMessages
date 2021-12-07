@@ -54,6 +54,7 @@ public class CallbackServerImpl extends UnicastRemoteObject
         return online;
     }
     
+    @Override
     public CallbackClientInterface obtenerPorNombre(String nombre) throws RemoteException {
         for(int i=0; i<clientList.size(); i++){
             CallbackClientInterface nextClient = 
@@ -63,6 +64,18 @@ public class CallbackServerImpl extends UnicastRemoteObject
             }
         }
         return null;
+    }
+    
+    @Override
+    public boolean nuevoUsuario(String nombre, String clave) throws RemoteException {
+        boolean resultado = false;
+        
+        if(!this.amigos.keySet().contains(nombre)){
+            fbd.nuevoUsuario(nombre, clave);
+            amigos.put(nombre, new ArrayList<>());
+        }
+        
+        return resultado;
     }
     
     public synchronized void registerForCallback(

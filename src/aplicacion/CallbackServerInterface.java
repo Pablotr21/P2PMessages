@@ -39,4 +39,7 @@ public interface CallbackServerInterface extends Remote {
     
     public CallbackClientInterface obtenerPorNombre(String nombre)
             throws java.rmi.RemoteException;
+    
+    public boolean nuevoUsuario(String nombre, String clave)
+            throws RemoteException;
 }
