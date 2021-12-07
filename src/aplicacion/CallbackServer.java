@@ -8,13 +8,6 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 
-/**
- * This class represents the object server for a distributed
- * object of class Callback, which implements the remote 
- * interface CallbackInterface.
- * @author M. L. Liu
- */
-
 public class CallbackServer  {
     
     private static baseDatos.FachadaBaseDatos fbd;

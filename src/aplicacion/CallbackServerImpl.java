@@ -6,12 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-/**
- * This class implements the remote interface 
- * CallbackServerInterface.
- * @author M. L. Liu
- */
-
 public class CallbackServerImpl extends UnicastRemoteObject
      implements CallbackServerInterface {
 
@@ -29,11 +23,6 @@ public class CallbackServerImpl extends UnicastRemoteObject
         for(String usuario : usuarios){
             amigos.put(usuario, fbd.amigosUsuario(usuario));
         }
-    }
-
-    public String sayHello( )   
-        throws java.rmi.RemoteException {
-          return("hello");
     }
   
     @Override
@@ -84,6 +73,8 @@ public class CallbackServerImpl extends UnicastRemoteObject
         fbd.aceptarAmistad(u1, u2);
         amigos.get(u1).add(u2);
         amigos.get(u2).add(u1);
+        CallbackClientInterface c = obtenerPorNombre(u2);
+        c.getFgui().actualizarTablas();
     }
     
     @Override
@@ -104,6 +95,7 @@ public class CallbackServerImpl extends UnicastRemoteObject
         return fbd.solicitudesUsuario(nombre);
     }
     
+    @Override
     public synchronized void registerForCallback(
         CallbackClientInterface callbackClientObject)
         throws java.rmi.RemoteException{
@@ -119,6 +111,7 @@ public class CallbackServerImpl extends UnicastRemoteObject
     // cancel its registration for callback
     // @param id is an ID for the client; to be used by
     // the server to uniquely identify the registered client.
+    @Override
       public synchronized void unregisterForCallback(
         CallbackClientInterface callbackClientObject) 
         throws java.rmi.RemoteException{

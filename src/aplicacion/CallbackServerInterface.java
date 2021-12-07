@@ -2,17 +2,8 @@ package aplicacion;
 
 import java.rmi.*;
 import java.util.ArrayList;
-//Hola
-/**
- * This is a remote interface for illustrating RMI 
- * client callback.
- * @author M. L. Liu
- */
 
 public interface CallbackServerInterface extends Remote {
-
-    public String sayHello( )   
-      throws java.rmi.RemoteException;
 
     // This remote method allows an object client to 
     // register for callback

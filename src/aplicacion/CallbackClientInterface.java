@@ -1,13 +1,8 @@
 package aplicacion;
 
+import gui.FachadaGUI;
 import java.rmi.*;
 import java.util.ArrayList;
-
-/**
- * This is a remote interface for illustrating RMI 
- * client callback.
- * @author M. L. Liu
- */
 
 public interface CallbackClientInterface extends java.rmi.Remote {
     // This remote method is invoked by a callback
@@ -15,6 +10,9 @@ public interface CallbackClientInterface extends java.rmi.Remote {
     // implements this interface.
     // @param message - a string containing information for the
     //                  client to process upon being called back.
+    
+    public FachadaGUI getFgui()
+            throws java.rmi.RemoteException;
     
     public String getNombre()
             throws java.rmi.RemoteException;

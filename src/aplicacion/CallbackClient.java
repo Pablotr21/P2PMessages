@@ -3,18 +3,6 @@ package aplicacion;
 import java.io.*;
 import java.rmi.*;
 
-/**
- * This class represents the object client for a
- * distributed object of class CallbackServerImpl, 
- * which implements the remote interface 
- * CallbackServerInterface.  It also accepts callback
- * from the server.
- * 
- * 
- * 
- * @author M. L. Liu
- */
-
 public class CallbackClient {
     
     gui.FachadaGUI fgui;

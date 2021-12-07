@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import aplicacion.CallbackClientImpl;
 import aplicacion.CallbackClientInterface;
 import aplicacion.CallbackServerInterface;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.rmi.Naming;
 
-/**
- *
- * @author alumnogreibd
- */
 public class VConexion extends javax.swing.JFrame {
     
     private FachadaGUI padre;
