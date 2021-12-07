@@ -16,12 +16,14 @@ public class VPrincipal extends javax.swing.JFrame {
     
     private CallbackClientInterface cliente;
     private CallbackServerInterface servidor;
+    private FachadaGUI padre;
 
     /**
      * Creates new form VPrincipal
      */
-    public VPrincipal() {
+    public VPrincipal(FachadaGUI padre) {
         initComponents();
+        this.padre = padre;
     }
 
     public CallbackClientInterface getCliente() {
@@ -48,6 +50,10 @@ public class VPrincipal extends javax.swing.JFrame {
     
     public void actividadAmigos(String msg){
         notificaciones.setText(notificaciones.getText() + msg);
+    }
+    
+    public void recibir(String mensaje){
+        mensajes.setText(mensajes.getText() + mensaje);
     }
 
     /**
@@ -96,6 +102,11 @@ public class VPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Amigos en línea");
 
         FriendButton.setText("Añadir amigo");
+        FriendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FriendButtonActionPerformed(evt);
+            }
+        });
 
         ExitButton.setBackground(new java.awt.Color(238, 2, 2));
         ExitButton.setForeground(new java.awt.Color(251, 251, 251));
@@ -170,6 +181,11 @@ public class VPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_ExitButtonActionPerformed
+
+    private void FriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendButtonActionPerformed
+        // TODO add your handling code here:
+        padre.iniciarChat(cliente, servidor, servidor.obtenerAmigosOnline(cliente.getNombre()));
+    }//GEN-LAST:event_FriendButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ChatButton;

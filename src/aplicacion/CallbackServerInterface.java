@@ -34,4 +34,6 @@ public interface CallbackServerInterface extends Remote {
   public boolean comprobarSesion(String nombre, String clave);
   
   public ArrayList<String> obtenerAmigosOnline(String nombre);
+  
+  public CallbackClientInterface obtenerPorNombre(String nombre);
 }

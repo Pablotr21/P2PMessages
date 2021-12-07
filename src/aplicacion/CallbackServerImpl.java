@@ -54,6 +54,17 @@ public class CallbackServerImpl extends UnicastRemoteObject
         return online;
     }
     
+    public CallbackClientInterface obtenerPorNombre(String nombre){
+        for(int i=0; i<clientList.size(); i++){
+            CallbackClientInterface nextClient = 
+          (CallbackClientInterface)clientList.elementAt(i);
+            if(nextClient.getNombre().equals(nombre)){
+                return nextClient;
+            }
+        }
+        return null;
+    }
+    
     public synchronized void registerForCallback(
         CallbackClientInterface callbackClientObject)
         throws java.rmi.RemoteException{
@@ -100,4 +111,4 @@ public class CallbackServerImpl extends UnicastRemoteObject
                          "Server completed callbacks ---");
     } // doCallbacks
 
-}// end CallbackServerImpl class   
+}// end CallbackServerImpl class 

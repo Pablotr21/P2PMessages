@@ -39,6 +39,10 @@ public class CallbackClientImpl extends UnicastRemoteObject
     public void setAmigos(ArrayList<String> amigos) {
         this.amigos = amigos;
     }
+    
+    public void recibir(String mensaje){
+        fgui.recibir(mensaje);
+    }
 
    public String notifyMe(String nombre, String message){
       String returnMessage = "Tu amigo " + nombre + message + "\n";
@@ -46,4 +50,4 @@ public class CallbackClientImpl extends UnicastRemoteObject
       return returnMessage;
    }      
 
-}// end CallbackClientImpl class   
+}// end CallbackClientImpl class    
