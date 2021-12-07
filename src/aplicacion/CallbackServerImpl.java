@@ -37,13 +37,13 @@ public class CallbackServerImpl extends UnicastRemoteObject
     }
   
     @Override
-    public boolean comprobarSesion(String nombre, String clave){
+    public boolean comprobarSesion(String nombre, String clave) throws RemoteException {
         return fbd.comprobarSesion(nombre,clave);
     }
   
-   @Override
-    public ArrayList<String> obtenerAmigosOnline(String nombre){
-        ArrayList<String> online = new ArrayList<String>();
+    @Override
+    public ArrayList<String> obtenerAmigosOnline(String nombre) throws RemoteException {
+        ArrayList<String> online = new ArrayList<>();
         for(int i=0; i<clientList.size(); i++){
             CallbackClientInterface nextClient = 
           (CallbackClientInterface)clientList.elementAt(i);

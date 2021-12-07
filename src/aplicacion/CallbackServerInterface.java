@@ -11,27 +11,29 @@ import java.util.ArrayList;
 
 public interface CallbackServerInterface extends Remote {
 
-  public String sayHello( )   
-    throws java.rmi.RemoteException;
+    public String sayHello( )   
+      throws java.rmi.RemoteException;
 
-// This remote method allows an object client to 
-// register for callback
-// @param callbackClientObject is a reference to the
-//        object of the client; to be used by the server
-//        to make its callbacks.
+    // This remote method allows an object client to 
+    // register for callback
+    // @param callbackClientObject is a reference to the
+    //        object of the client; to be used by the server
+    //        to make its callbacks.
 
-  public void registerForCallback(
-    CallbackClientInterface callbackClientObject
-    ) throws java.rmi.RemoteException;
+    public void registerForCallback(
+      CallbackClientInterface callbackClientObject
+      ) throws java.rmi.RemoteException;
 
-// This remote method allows an object client to 
-// cancel its registration for callback
+    // This remote method allows an object client to 
+    // cancel its registration for callback
 
-  public void unregisterForCallback(
-    CallbackClientInterface callbackClientObject)
-    throws java.rmi.RemoteException;
+    public void unregisterForCallback(
+      CallbackClientInterface callbackClientObject)
+      throws java.rmi.RemoteException;
   
-  public boolean comprobarSesion(String nombre, String clave);
-  
-  public ArrayList<String> obtenerAmigosOnline(String nombre);
+    public boolean comprobarSesion(String nombre, String clave)
+            throws java.rmi.RemoteException;
+
+    public ArrayList<String> obtenerAmigosOnline(String nombre)
+            throws java.rmi.RemoteException;
 }

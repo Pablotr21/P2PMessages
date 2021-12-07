@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * This class represents the object server for a distributed
