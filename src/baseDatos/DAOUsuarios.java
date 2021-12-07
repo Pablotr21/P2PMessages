@@ -188,4 +188,41 @@ public class DAOUsuarios extends AbstractDAO{
         
         return resultado;
     }
+    
+    public ArrayList<String> solicitudesUsuario(String u){
+        Connection con;
+        PreparedStatement stmUser = null;
+        ResultSet rsUsuario;
+        ArrayList<String> listAmig = new ArrayList<>();
+        
+        con = this.getConexion();
+
+        try {
+            stmUser = con.prepareStatement("SELECT *\n" +
+            "FROM ((SELECT usuario2 as amigo\n" +
+            "	FROM amistad\n" +
+            "	WHERE usuario1 = ? AND aceptado = false)\n" +
+            "	UNION\n" +
+            "	(SELECT usuario1 as  amigo\n" +
+            "	FROM amistad\n" +
+            "	WHERE usuario2 = ? AND aceptado = false)) as amigo");
+            stmUser.setString(1, u);
+            stmUser.setString(2, u);
+            
+            rsUsuario = stmUser.executeQuery();
+            while (rsUsuario.next()) {
+                listAmig.add(rsUsuario.getString("amigo"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmUser.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return listAmig;
+    }
 }

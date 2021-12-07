@@ -61,4 +61,8 @@ public class FachadaBaseDatos {
         u.nuevoUsuario(nombre, clave);
     }
     
+    public ArrayList<String> solicitudesUsuario(String user){
+        return u.solicitudesUsuario(user);
+    }
+    
 }
