@@ -116,6 +116,7 @@ public class VConexion extends javax.swing.JFrame {
                 new CallbackClientImpl(padre);
             // register for callback
             h.registerForCallback(callbackObj);
+            padre.iniciarSesion(callbackObj, h);
         } // end try 
         catch (Exception e) {
             System.out.println(

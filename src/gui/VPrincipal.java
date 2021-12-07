@@ -47,7 +47,7 @@ public class VPrincipal extends javax.swing.JFrame {
     }
     
     public void actividadAmigos(String msg){
-        mensajes.setText(mensajes.getText() + msg);
+        notificaciones.setText(notificaciones.getText() + msg);
     }
 
     /**
@@ -62,7 +62,7 @@ public class VPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         mensajes = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        notificaciones = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -78,9 +78,9 @@ public class VPrincipal extends javax.swing.JFrame {
         mensajes.setRows(5);
         jScrollPane1.setViewportView(mensajes);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        notificaciones.setColumns(20);
+        notificaciones.setRows(5);
+        jScrollPane2.setViewportView(notificaciones);
 
         jLabel1.setText("Notificaciones");
 
@@ -184,7 +184,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea mensajes;
+    private javax.swing.JTextArea notificaciones;
     // End of variables declaration//GEN-END:variables
 }
