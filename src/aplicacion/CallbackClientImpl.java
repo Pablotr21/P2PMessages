@@ -1,6 +1,5 @@
 package aplicacion;
 
-import gui.FachadaGUI;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
@@ -12,19 +11,15 @@ public class CallbackClientImpl extends UnicastRemoteObject
     private ArrayList<String> amigos;
     private gui.FachadaGUI fgui;
   
-   public CallbackClientImpl(gui.FachadaGUI fgui) throws RemoteException {
+    public CallbackClientImpl(gui.FachadaGUI fgui) throws RemoteException {
         super();
         this.amigos = new ArrayList<>();
         this.fgui = fgui;
-   }
-
-    @Override
-    public FachadaGUI getFgui() throws RemoteException {
-        return fgui;
     }
 
-    public void setFgui(FachadaGUI fgui) {
-        this.fgui = fgui;
+    @Override
+    public void actualizarTablasVP() throws RemoteException {
+        this.fgui.actualizarTablas();
     }
     
     @Override

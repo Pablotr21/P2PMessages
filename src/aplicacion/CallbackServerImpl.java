@@ -73,8 +73,13 @@ public class CallbackServerImpl extends UnicastRemoteObject
         fbd.aceptarAmistad(u1, u2);
         amigos.get(u1).add(u2);
         amigos.get(u2).add(u1);
-        CallbackClientInterface c = obtenerPorNombre(u2);
-        c.getFgui().actualizarTablas();
+        for(int i=0; i<clientList.size(); i++){
+            CallbackClientInterface nextClient = 
+          (CallbackClientInterface)clientList.elementAt(i);
+            if(nextClient.getNombre().equals(u2)){
+                nextClient.actualizarTablasVP();
+            }
+        }
     }
     
     @Override

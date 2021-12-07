@@ -11,7 +11,7 @@ public interface CallbackClientInterface extends java.rmi.Remote {
     // @param message - a string containing information for the
     //                  client to process upon being called back.
     
-    public FachadaGUI getFgui()
+    public void actualizarTablasVP()
             throws java.rmi.RemoteException;
     
     public String getNombre()
