@@ -35,7 +35,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="NameField" min="-2" pref="106" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="FiendButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="FriendButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="NameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="FiendButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FriendButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
@@ -60,22 +60,22 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="NameField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NameFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="FiendButton">
+    <Component class="javax.swing.JButton" name="FriendButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ee" green="ee" red="96" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Amistad"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FriendButtonActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -91,6 +91,9 @@
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RequestListMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

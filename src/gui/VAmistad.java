@@ -5,16 +5,18 @@
  */
 package gui;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alumnogreibd
  */
 public class VAmistad extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VAmistad
-     */
-    public VAmistad() {
+    ArrayList<String> Amistades;
+    
+    public VAmistad(ArrayList<String> a) {
+        this.Amistades = a;
         initComponents();
     }
 
@@ -29,25 +31,29 @@ public class VAmistad extends javax.swing.JFrame {
 
         NameField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        FiendButton = new javax.swing.JButton();
+        FriendButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         RequestList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        NameField.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Nombre:");
+
+        FriendButton.setBackground(new java.awt.Color(150, 238, 238));
+        FriendButton.setText("Amistad");
+        FriendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameFieldActionPerformed(evt);
+                FriendButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Nombre:");
-
-        FiendButton.setBackground(new java.awt.Color(150, 238, 238));
-        FiendButton.setText("Amistad");
-
         RequestList.setModel(new ModeloListaString());
         RequestList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        RequestList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RequestListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(RequestList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -65,7 +71,7 @@ public class VAmistad extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(FiendButton)))
+                        .addComponent(FriendButton)))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -77,19 +83,27 @@ public class VAmistad extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FiendButton))
+                    .addComponent(FriendButton))
                 .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
+    private void FriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NameFieldActionPerformed
+    }//GEN-LAST:event_FriendButtonActionPerformed
+
+    private void RequestListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RequestListMouseClicked
+        ModeloListaString m = (ModeloListaString) RequestList.getModel();
+        if(m.getSize() != 0){
+            int i = RequestList.getSelectedIndex();
+            NameField.setText(this.Amistades.get(i));
+        }
+    }//GEN-LAST:event_RequestListMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton FiendButton;
+    private javax.swing.JButton FriendButton;
     private javax.swing.JTextField NameField;
     private javax.swing.JList RequestList;
     private javax.swing.JLabel jLabel1;
