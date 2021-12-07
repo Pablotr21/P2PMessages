@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
 
 
@@ -50,8 +49,16 @@ public class FachadaBaseDatos {
         return u.comprobarSesion(nombre,clave);
     }
     
-    public HashMap<String,ArrayList<String>> obtenerAmigos(){
-        return u.obtenerAmigos();
+    public ArrayList<String> listaUsuarios(){
+        return u.listaUsuarios();
+    }
+    
+    public ArrayList<String> amigosUsuario(String user){
+        return u.amigosUsuario(user);
+    }
+    
+    public void nuevoUsuario(String nombre, String clave){
+        u.nuevoUsuario(nombre, clave);
     }
     
 }

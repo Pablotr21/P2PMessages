@@ -5,10 +5,8 @@
  */
 package baseDatos;
 
-import aplicacion.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -20,9 +18,8 @@ public class DAOUsuarios extends AbstractDAO{
         super.setConexion(conexion);
     }
     
-    public ArrayList<Usuario> listaUsuarios(){
-        ArrayList<Usuario> resultado = new ArrayList<Usuario>();
-        Usuario u;
+    public ArrayList<String> listaUsuarios(){
+        ArrayList<String> resultado = new ArrayList<String>();
         Connection con;
         PreparedStatement stmUser = null;
         ResultSet rsUsuario;
@@ -30,12 +27,11 @@ public class DAOUsuarios extends AbstractDAO{
         con = this.getConexion();
 
         try {
-            stmUser = con.prepareStatement("SELECT nombre, clave "
+            stmUser = con.prepareStatement("SELECT nombre "
                     + "FROM cliente");
             rsUsuario = stmUser.executeQuery();
             while (rsUsuario.next()) {
-                u = new Usuario(rsUsuario.getString("nombre"), rsUsuario.getString("clave"));
-                resultado.add(u);
+                resultado.add(rsUsuario.getString("nombre"));
             }
 
         } catch (SQLException e) {
@@ -50,11 +46,11 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
     
-    public void amigosUsuario(Usuario u){
+    public ArrayList<String> amigosUsuario(String u){
         Connection con;
         PreparedStatement stmUser = null;
         ResultSet rsUsuario;
-        ArrayList<String> listAmig;
+        ArrayList<String> listAmig = new ArrayList<>();
         
         con = this.getConexion();
 
@@ -67,11 +63,10 @@ public class DAOUsuarios extends AbstractDAO{
             "	(SELECT usuario1 as  amigo\n" +
             "	FROM amistad\n" +
             "	WHERE usuario2 = ? AND aceptado = true)) as amigo");
-            stmUser.setString(1, u.getNombre());
-            stmUser.setString(2, u.getNombre());
+            stmUser.setString(1, u);
+            stmUser.setString(2, u);
             
             rsUsuario = stmUser.executeQuery();
-            listAmig = u.getAmigos();
             while (rsUsuario.next()) {
                 listAmig.add(rsUsuario.getString("amigo"));
             }
@@ -85,9 +80,10 @@ public class DAOUsuarios extends AbstractDAO{
                 System.out.println("Imposible cerrar cursores");
             }
         }
+        return listAmig;
     }
     
-    public void nuevoUsuario(Usuario u){
+    public void nuevoUsuario(String nombre, String clave){
         PreparedStatement stmUsuario = null;
         Connection con;
         
@@ -96,8 +92,8 @@ public class DAOUsuarios extends AbstractDAO{
         try {
             stmUsuario = con.prepareStatement("insert into cliente(nombre, clave) "
                     + "values (?,?)");
-            stmUsuario.setString(1, u.getNombre());
-            stmUsuario.setString(2, u.getClave());
+            stmUsuario.setString(1, nombre);
+            stmUsuario.setString(2, clave);
             stmUsuario.executeUpdate();
 
         } catch (SQLException e) {
@@ -161,10 +157,35 @@ public class DAOUsuarios extends AbstractDAO{
     }
     
     public boolean comprobarSesion(String nombre, String clave){
-        return true;
-    }
-    
-    public HashMap<String,ArrayList<String>> obtenerAmigos(){
-        return null;
+        boolean resultado = false;
+        PreparedStatement stmUsuario = null;
+        Connection con;
+        ResultSet rsUsuario;
+        
+        con = super.getConexion();
+
+        try {
+            stmUsuario = con.prepareStatement("select * "
+                    + "from cliente "
+                    + "where nombre = ? and clave = ? ");
+            stmUsuario.setString(1, nombre);
+            stmUsuario.setString(2, clave);
+            rsUsuario = stmUsuario.executeQuery();
+            
+            if (rsUsuario.next()) {
+                resultado = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmUsuario.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        
+        return resultado;
     }
 }

@@ -1,4 +1,5 @@
 package aplicacion;
+
 import java.rmi.*;
 import java.util.ArrayList;
 //Hola
