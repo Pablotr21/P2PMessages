@@ -8,10 +8,6 @@ package baseDatos;
 import java.sql.*;
 import java.util.ArrayList;
 
-/**
- *
- * @author alumnogreibd
- */
 public class DAOUsuarios extends AbstractDAO{
     
     public DAOUsuarios(Connection conexion) {
@@ -19,7 +15,7 @@ public class DAOUsuarios extends AbstractDAO{
     }
     
     public ArrayList<String> listaUsuarios(){
-        ArrayList<String> resultado = new ArrayList<String>();
+        ArrayList<String> resultado = new ArrayList<>();
         Connection con;
         PreparedStatement stmUser = null;
         ResultSet rsUsuario;

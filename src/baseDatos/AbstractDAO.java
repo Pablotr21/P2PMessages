@@ -1,6 +1,7 @@
 package baseDatos;
 
 public abstract class AbstractDAO {
+    
     private java.sql.Connection conexion;
 
     protected java.sql.Connection getConexion() {

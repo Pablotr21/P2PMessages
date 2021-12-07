@@ -34,7 +34,8 @@ public class FachadaBaseDatos {
                     + configuracion.getProperty("puerto") + "/"
                     + configuracion.getProperty("baseDatos"),
                     usuario);
-
+            u = new DAOUsuarios(conexion);
+            
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
         } catch (IOException i) {

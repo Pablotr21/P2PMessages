@@ -11,43 +11,43 @@ import java.util.ArrayList;
  */
 
 public class CallbackClientImpl extends UnicastRemoteObject
-     implements CallbackClientInterface {
+     implements CallbackClientInterface{
     
     private String nombre;
     private ArrayList<String> amigos;
     private gui.FachadaGUI fgui;
   
    public CallbackClientImpl(gui.FachadaGUI fgui) throws RemoteException {
-      super( );
-      this.nombre = new String();
-      this.amigos = new ArrayList<String>();
-      this.fgui = fgui;
+        super( );
+        this.nombre = new String();
+        this.amigos = new ArrayList<String>();
+        this.fgui = fgui;
    }
 
-    public String getNombre() {
+    public String getNombre() throws RemoteException {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) throws RemoteException {
         this.nombre = nombre;
     }
 
-    public ArrayList<String> getAmigos() {
+    public ArrayList<String> getAmigos() throws RemoteException {
         return amigos;
     }
 
-    public void setAmigos(ArrayList<String> amigos) {
+    public void setAmigos(ArrayList<String> amigos) throws RemoteException {
         this.amigos = amigos;
     }
     
-    public void recibir(String mensaje){
+    public void recibir(String mensaje) throws RemoteException {
         fgui.recibir(mensaje);
     }
 
-   public String notifyMe(String nombre, String message){
-      String returnMessage = "Tu amigo " + nombre + message + "\n";
-      fgui.actividadAmigos(returnMessage);
-      return returnMessage;
+   public String notifyMe(String nombre, String message) throws RemoteException {
+        String returnMessage = "Tu amigo " + nombre + message + "\n";
+        fgui.actividadAmigos(returnMessage);
+        return returnMessage;
    }      
 
 }// end CallbackClientImpl class    
