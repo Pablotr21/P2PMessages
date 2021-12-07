@@ -181,7 +181,11 @@ public class VPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ChatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChatButtonActionPerformed
-        // TODO add your handling code here:
+        try{
+            padre.iniciarChat(cliente, servidor, servidor.obtenerAmigosOnline(cliente.getNombre()));
+        }catch(RemoteException e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_ChatButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
@@ -191,7 +195,7 @@ public class VPrincipal extends javax.swing.JFrame {
 
     private void FriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendButtonActionPerformed
         try{
-        padre.iniciarChat(cliente, servidor, servidor.obtenerAmigosOnline(cliente.getNombre()));
+            padre.verSolucitudes(cliente, servidor, servidor.obtenerSolicitudes(cliente.getNombre()));
         }catch(RemoteException e){
             System.out.println(e.getMessage());
         }

@@ -153,10 +153,12 @@ public class VChat extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void amigosListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amigosListMouseClicked
-        // TODO add your handling code here:
-        ModeloListaString ml = (ModeloListaString) amigosList.getModel();
-        nombre.setText(ml.getElementAt(evt.getY()));
         enviarbtn.setEnabled(true);
+        ModeloListaString m = (ModeloListaString) amigosList.getModel();
+        if(m.getSize() != 0){
+            int i = amigosList.getSelectedIndex();
+            nombre.setText(this.amigos.get(i));
+        }
     }//GEN-LAST:event_amigosListMouseClicked
 
     private void inicializarTablas(){

@@ -143,8 +143,11 @@ public class VAutenticacion extends javax.swing.JFrame {
 
     private void StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartButtonActionPerformed
         try{
-            if(server.comprobarSesion(Usuario.getText(), Arrays.toString(Contraseña.getPassword()))){
+            System.out.println(Usuario.getText());
+            System.out.println(String.valueOf(Contraseña.getPassword()));
+            if(server.comprobarSesion(Usuario.getText(), String.valueOf(Contraseña.getPassword()))){
                 client.setNombre(Usuario.getText());
+                server.registerForCallback(client);
                 fgui.iniciarPrincipal(client, server);
                 this.dispose();
             }

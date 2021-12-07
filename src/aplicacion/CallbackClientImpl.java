@@ -4,12 +4,6 @@ import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
 
-/**
- * This class implements the remote interface 
- * CallbackClientInterface.
- * @author M. L. Liu
- */
-
 public class CallbackClientImpl extends UnicastRemoteObject
      implements CallbackClientInterface{
     
@@ -18,9 +12,8 @@ public class CallbackClientImpl extends UnicastRemoteObject
     private gui.FachadaGUI fgui;
   
    public CallbackClientImpl(gui.FachadaGUI fgui) throws RemoteException {
-        super( );
-        this.nombre = new String();
-        this.amigos = new ArrayList<String>();
+        super();
+        this.amigos = new ArrayList<>();
         this.fgui = fgui;
    }
 
@@ -47,6 +40,7 @@ public class CallbackClientImpl extends UnicastRemoteObject
    public String notifyMe(String nombre, String message) throws RemoteException {
         String returnMessage = "Tu amigo " + nombre + message + "\n";
         fgui.actividadAmigos(returnMessage);
+        fgui.actualizarTablas();
         return returnMessage;
    }      
 

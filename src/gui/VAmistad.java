@@ -5,6 +5,8 @@
  */
 package gui;
 
+import aplicacion.CallbackClientInterface;
+import aplicacion.CallbackServerInterface;
 import java.util.ArrayList;
 
 /**
@@ -13,11 +15,16 @@ import java.util.ArrayList;
  */
 public class VAmistad extends javax.swing.JFrame {
 
-    ArrayList<String> solicitudes;
+    private final CallbackClientInterface client;
+    private final CallbackServerInterface server;
+    private ArrayList<String> solicitudes;
     
-    public VAmistad(ArrayList<String> a) {
+    public VAmistad(CallbackClientInterface client, CallbackServerInterface server, ArrayList<String> a) {
         this.solicitudes = a;
+        this.client = client;
+        this.server = server;
         initComponents();
+        inicializarTablas();
     }
 
     /**
@@ -139,7 +146,13 @@ public class VAmistad extends javax.swing.JFrame {
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_ExitButtonActionPerformed
-
+    
+    private void inicializarTablas(){
+        ModeloListaString ml = new ModeloListaString();
+        ml.setElementos(solicitudes);
+        RequestList.setModel(ml);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ErrorLabel;
     private javax.swing.JButton ExitButton;

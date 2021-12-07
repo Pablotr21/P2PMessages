@@ -78,6 +78,12 @@ public class CallbackServerImpl extends UnicastRemoteObject
         return resultado;
     }
     
+    
+    @Override
+    public ArrayList<String> obtenerSolicitudes(String nombre) throws RemoteException{
+        return fbd.solicitudesUsuario(nombre);
+    }
+    
     public synchronized void registerForCallback(
         CallbackClientInterface callbackClientObject)
         throws java.rmi.RemoteException{

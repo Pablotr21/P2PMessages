@@ -22,6 +22,7 @@ public class VConexion extends javax.swing.JFrame {
 
     /**
      * Creates new form VConexion
+     * @param padre
      */
     public VConexion(FachadaGUI padre) {
         this.padre = padre;
@@ -107,7 +108,7 @@ public class VConexion extends javax.swing.JFrame {
                 String registryURL = 
                     "rmi://localhost:" + PortField.getText() + "/callback";  
                 // find the remote object and cast it to an 
-                //   interface object
+                // interface object
                 CallbackServerInterface h =
                   (CallbackServerInterface)Naming.lookup(registryURL);
                 //System.out.println("Lookup completed " );
@@ -115,12 +116,12 @@ public class VConexion extends javax.swing.JFrame {
                 CallbackClientInterface callbackObj = 
                     new CallbackClientImpl(padre);
                 // register for callback
-                h.registerForCallback(callbackObj);
                 padre.iniciarSesion(callbackObj, h);
+                
             } // end try 
             catch (Exception e) {
                 System.out.println(
-                    "Exception in CallbackClient: " + e);
+                    "Exception in VConexion: " + e);
             } // end catch
         }
         this.dispose();

@@ -33,7 +33,7 @@ public class FachadaGUI {
             vp.setCliente(c);
             vp.setServidor(s);
             vp.setVisible(true);
-            vp.inicializarTablas(); //Deberíamos hacerlo dentro del VP quizás
+            actualizarTablas(); //Deberíamos hacerlo dentro del VP quizás
         } catch (Exception ex) {
         }
     }
@@ -54,7 +54,16 @@ public class FachadaGUI {
         vch.setVisible(true);
     }
     
+    public void verSolucitudes(CallbackClientInterface cliente, CallbackServerInterface servidor, ArrayList<String> solicitudes){
+        VAmistad va = new VAmistad(cliente, servidor, solicitudes);
+        va.setVisible(true);
+    }
+    
     public void recibir(String mensaje){
         vp.recibir(mensaje);
+    }
+    
+    public void actualizarTablas(){
+        vp.inicializarTablas();
     }
 }
