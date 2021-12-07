@@ -140,7 +140,7 @@ public class VChat extends javax.swing.JFrame {
     private void enviarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarbtnActionPerformed
         // TODO add your handling code here:
         try{
-            String msg = (nombre.getText() + ": " + mensaje.getText() + "\n");
+            String msg = (cliente.getNombre() + ": " + mensaje.getText() + "\n");
             servidor.obtenerPorNombre(nombre.getText()).recibir(msg);
         }catch(RemoteException e){
             System.out.println(e.getMessage());
