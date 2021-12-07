@@ -45,4 +45,10 @@ public interface CallbackServerInterface extends Remote {
     
     public boolean nuevoUsuario(String nombre, String clave)
             throws java.rmi.RemoteException;
+    
+    public void aceptarAmistad(String u1, String u2)
+            throws java.rmi.RemoteException;
+    
+    public boolean solicitarAmistad(String u1, String u2)
+            throws java.rmi.RemoteException;
 }

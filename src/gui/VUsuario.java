@@ -73,7 +73,7 @@ public class VUsuario extends javax.swing.JFrame {
         });
 
         ErrorLabel.setForeground(new java.awt.Color(251, 1, 1));
-        ErrorLabel.setText("Error, usuario ya existe!");
+        ErrorLabel.setText("Error, parámetros mal introducidos!");
         ErrorLabel.setEnabled(false);
         ErrorLabel.setFocusable(false);
 
@@ -111,9 +111,9 @@ public class VUsuario extends javax.swing.JFrame {
                                     .addComponent(KeyField)
                                     .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+                        .addGap(53, 53, 53)
                         .addComponent(ErrorLabel)))
-                .addGap(0, 64, Short.MAX_VALUE))
+                .addGap(0, 55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +132,9 @@ public class VUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Key2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(ErrorLabel)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RegisterButton)
                 .addContainerGap())
         );
@@ -158,6 +158,8 @@ public class VUsuario extends javax.swing.JFrame {
                 System.out.println(e.getMessage());
             }
             
+        }else{
+            ErrorLabel.setEnabled(true);
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 

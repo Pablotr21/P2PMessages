@@ -73,14 +73,34 @@ public class CallbackServerImpl extends UnicastRemoteObject
         if(!this.amigos.keySet().contains(nombre)){
             fbd.nuevoUsuario(nombre, clave);
             amigos.put(nombre, new ArrayList<>());
+            resultado = true;
         }
         
         return resultado;
     }
     
+    @Override
+    public void aceptarAmistad(String u1, String u2) throws RemoteException {
+        fbd.aceptarAmistad(u1, u2);
+        amigos.get(u1).add(u2);
+        amigos.get(u2).add(u1);
+    }
     
     @Override
-    public ArrayList<String> obtenerSolicitudes(String nombre) throws RemoteException{
+    public boolean solicitarAmistad(String u1, String u2) throws RemoteException {
+        boolean resultado = false;
+        
+        if(this.amigos.keySet().contains(u1) && this.amigos.keySet().contains(u2)){
+            fbd.solicitarAmistad(u1, u2);
+            resultado = true;
+        }
+        
+        
+        return resultado;
+    }
+    
+    @Override
+    public ArrayList<String> obtenerSolicitudes(String nombre) throws RemoteException {
         return fbd.solicitudesUsuario(nombre);
     }
     

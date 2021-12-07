@@ -66,4 +66,12 @@ public class FachadaBaseDatos {
         return u.solicitudesUsuario(user);
     }
     
+    public void aceptarAmistad(String u1, String u2){
+        u.aceptarAmistad(u1, u2);
+    }
+    
+    public void solicitarAmistad(String u1, String u2){
+        u.solicitarAmistad(u1, u2);
+    }
+    
 }

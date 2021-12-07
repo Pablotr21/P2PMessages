@@ -106,7 +106,6 @@ public class DAOUsuarios extends AbstractDAO{
     public void solicitarAmistad(String u1, String u2){
         PreparedStatement stmUsuario = null;
         Connection con;
-        
         con = super.getConexion();
 
         try {
@@ -115,7 +114,7 @@ public class DAOUsuarios extends AbstractDAO{
             stmUsuario.setString(1, u1);
             stmUsuario.setString(2, u2);
             stmUsuario.executeUpdate();
-
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -137,8 +136,8 @@ public class DAOUsuarios extends AbstractDAO{
             stmUsuario = con.prepareStatement("update amistad "
                     + "set aceptado = true "
                     + "where usuario1 = ? and usuario2 = ? ");
-            stmUsuario.setString(1, u1);
-            stmUsuario.setString(2, u2);
+            stmUsuario.setString(1, u2);
+            stmUsuario.setString(2, u1);
             stmUsuario.executeUpdate();
 
         } catch (SQLException e) {

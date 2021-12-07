@@ -7,6 +7,7 @@ package gui;
 
 import aplicacion.CallbackClientInterface;
 import aplicacion.CallbackServerInterface;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -125,11 +126,34 @@ public class VAmistad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendButtonActionPerformed
-        if(NameField.getText().length() > 0 && solicitudes.contains(NameField.getText())){
+        boolean flag = false;
+        
+        if(NameField.getText().length() > 0){
+            if(solicitudes.contains(NameField.getText())){
+                try{
+                    server.aceptarAmistad(client.getNombre(), NameField.getText());
+                    solicitudes.remove(NameField.getText());
+                    flag = true;
+                    inicializarTablas();
+                }catch(RemoteException e){
+                    System.out.println(e.getMessage());
+                }
+            }else{
+                try{
+                    flag = server.solicitarAmistad(client.getNombre(), NameField.getText());
+                    inicializarTablas();
+                }catch(RemoteException e){
+                    System.out.println(e.getMessage());
+                }
+            }
             
-            
-            if(ErrorLabel.isEnabled())
+            if(ErrorLabel.isEnabled() && flag == true){
                 ErrorLabel.setEnabled(false);
+            }else if(!ErrorLabel.isEnabled() && flag == false){
+                ErrorLabel.setEnabled(true);
+            }
+            NameField.setText("");
+            
         }else{
             ErrorLabel.setEnabled(true);
         }
