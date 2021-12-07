@@ -1,21 +1,20 @@
 package baseDatos;
 
-import aplicacion.FachadaAplicacion;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 
 public class FachadaBaseDatos {
-    private java.sql.Connection conexion;
-    private final FachadaAplicacion fa;
+    private java.sql.Connection conexion;  
+    private DAOUsuarios u;
     
-    
-    public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
+    public FachadaBaseDatos() {
 
         Properties configuracion = new Properties();
-        this.fa = fa;
         FileInputStream arqConfiguracion;
 
         try {
@@ -46,4 +45,13 @@ public class FachadaBaseDatos {
         }
 
     }
+    
+    public boolean comprobarSesion(String nombre, String clave){
+        return u.comprobarSesion(nombre,clave);
+    }
+    
+    public HashMap<String,ArrayList<String>> obtenerAmigos(){
+        return u.obtenerAmigos();
+    }
+    
 }

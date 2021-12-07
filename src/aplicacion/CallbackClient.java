@@ -16,8 +16,11 @@ import java.rmi.*;
  */
 
 public class CallbackClient {
+    
+    private static gui.FachadaGUI fgui;
 
   public static void main(String args[]) {
+      fgui = new gui.FachadaGUI();
     try {
       int RMIPort;         
       String hostName;

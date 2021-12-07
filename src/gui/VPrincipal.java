@@ -5,17 +5,45 @@
  */
 package gui;
 
+import aplicacion.CallbackClientInterface;
+import aplicacion.CallbackServerInterface;
+
 /**
  *
  * @author alumnogreibd
  */
 public class VPrincipal extends javax.swing.JFrame {
+    
+    private CallbackClientInterface cliente;
+    private CallbackServerInterface servidor;
 
     /**
      * Creates new form VPrincipal
      */
     public VPrincipal() {
         initComponents();
+    }
+
+    public CallbackClientInterface getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(CallbackClientInterface cliente) {
+        this.cliente = cliente;
+    }
+
+    public CallbackServerInterface getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(CallbackServerInterface servidor) {
+        this.servidor = servidor;
+    }
+    
+    public void inicializarTablas(){
+        ModeloListaString ml = new ModeloListaString();
+        ml.setElementos(servidor.obtenerAmigosOnline(cliente.getNombre()));
+        amigosList.setModel(ml);
     }
 
     /**
@@ -33,11 +61,12 @@ public class VPrincipal extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        amigosList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +100,9 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
 
+        amigosList.setModel(new ModeloListaString());
+        jScrollPane3.setViewportView(amigosList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,15 +118,15 @@ public class VPrincipal extends javax.swing.JFrame {
                             .addComponent(jScrollPane1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))))
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3))))
@@ -114,9 +146,9 @@ public class VPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(11, 11, 11)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jButton2))))
@@ -138,6 +170,7 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList amigosList;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -146,8 +179,8 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,17 +5,31 @@
  */
 package gui;
 
+import aplicacion.CallbackClientInterface;
+import aplicacion.CallbackServerInterface;
+import java.util.Arrays;
+
 /**
  *
  * @author alumnogreibd
  */
 public class VAutenticacion extends javax.swing.JFrame {
+    
+    private final CallbackClientInterface client;
+    private final CallbackServerInterface server;
+    private FachadaGUI fgui;
 
     /**
      * Creates new form VAutenticacion
+     * @param client
+     * @param server
+     * @param fgui
      */
-    public VAutenticacion() {
+    public VAutenticacion(CallbackClientInterface client, CallbackServerInterface server, FachadaGUI fgui) {
         initComponents();
+        this.client = client;
+        this.server = server;
+        this.fgui = fgui;
     }
 
     /**
@@ -29,8 +43,8 @@ public class VAutenticacion extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        Usuario = new javax.swing.JTextField();
+        Contraseña = new javax.swing.JPasswordField();
         RegisterButton = new javax.swing.JButton();
         ImageButton = new javax.swing.JButton();
         StartButton = new javax.swing.JButton();
@@ -43,9 +57,9 @@ public class VAutenticacion extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                UsuarioActionPerformed(evt);
             }
         });
 
@@ -90,11 +104,11 @@ public class VAutenticacion extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(ImageButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(126, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -117,11 +131,11 @@ public class VAutenticacion extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RegisterButton)
@@ -132,12 +146,17 @@ public class VAutenticacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_UsuarioActionPerformed
 
     private void StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartButtonActionPerformed
         // TODO add your handling code here:
+        if(server.comprobarSesion(Usuario.getText(), Arrays.toString(Contraseña.getPassword()))){
+            client.setNombre(Usuario.getText());
+            fgui.iniciarPrincipal(client, server);
+            this.dispose();
+        }
     }//GEN-LAST:event_StartButtonActionPerformed
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
@@ -150,13 +169,13 @@ public class VAutenticacion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Contraseña;
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton ImageButton;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JButton StartButton;
+    private javax.swing.JTextField Usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

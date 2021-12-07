@@ -1,15 +1,29 @@
 package gui;
 
+import aplicacion.CallbackClientInterface;
+import aplicacion.CallbackServerInterface;
+
 public class FachadaGUI {
     
-    aplicacion.FachadaAplicacion fa;
     VPrincipal vp;
+    VAutenticacion va;
 
-    public FachadaGUI(aplicacion.FachadaAplicacion fa) {
+    public FachadaGUI() {
         try {
-            this.fa = fa;
             this.vp = new VPrincipal();
         } catch (Exception ex) {
         }
+    }
+    
+    public void iniciarSesion(CallbackClientInterface c, CallbackServerInterface s){
+        this.va = new VAutenticacion(c,s,this);
+        this.va.setVisible(true);
+    }
+    
+    public void iniciarPrincipal(CallbackClientInterface c, CallbackServerInterface s){
+        vp.setCliente(c);
+        vp.setServidor(s);
+        vp.setVisible(true);
+        vp.inicializarTablas();
     }
 }

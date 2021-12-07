@@ -1,6 +1,8 @@
 package aplicacion;
 import java.rmi.*;
 import java.rmi.server.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 
 /**
@@ -13,11 +15,15 @@ public class CallbackServerImpl extends UnicastRemoteObject
      implements CallbackServerInterface {
 
    private Vector clientList;
+   private baseDatos.FachadaBaseDatos fbd;
+   private HashMap<String,ArrayList<String>> amigos;
 
 
-   public CallbackServerImpl() throws RemoteException {
+   public CallbackServerImpl(baseDatos.FachadaBaseDatos fbd) throws RemoteException {
       super( );
      clientList = new Vector();
+     this.fbd = fbd;
+     amigos = fbd.obtenerAmigos();
    }
 
   public String sayHello( )   
@@ -35,6 +41,24 @@ public class CallbackServerImpl extends UnicastRemoteObject
       doCallbacks();
     } // end if
   }  
+  
+   @Override
+  public boolean comprobarSesion(String nombre, String clave){
+      return fbd.comprobarSesion(nombre,clave);
+  }
+  
+   @Override
+  public ArrayList<String> obtenerAmigosOnline(String nombre){
+      ArrayList<String> online = new ArrayList<String>();
+      for(int i=0; i<clientList.size(); i++){
+          CallbackClientInterface nextClient = 
+        (CallbackClientInterface)clientList.elementAt(i);
+          if(amigos.get(nombre).contains(nextClient.getNombre())){
+              online.add(nextClient.getNombre());
+          }
+      }
+      return online;
+  }
 
 // This remote method allows an object client to 
 // cancel its registration for callback

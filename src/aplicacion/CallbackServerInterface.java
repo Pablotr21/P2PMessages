@@ -1,5 +1,6 @@
 package aplicacion;
 import java.rmi.*;
+import java.util.ArrayList;
 //Hola
 /**
  * This is a remote interface for illustrating RMI 
@@ -28,4 +29,8 @@ public interface CallbackServerInterface extends Remote {
   public void unregisterForCallback(
     CallbackClientInterface callbackClientObject)
     throws java.rmi.RemoteException;
+  
+  public boolean comprobarSesion(String nombre, String clave);
+  
+  public ArrayList<String> obtenerAmigosOnline(String nombre);
 }

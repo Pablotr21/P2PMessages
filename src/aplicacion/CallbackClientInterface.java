@@ -1,6 +1,7 @@
 package aplicacion;
 
 import java.rmi.*;
+import java.util.ArrayList;
 
 /**
  * This is a remote interface for illustrating RMI 
@@ -14,6 +15,14 @@ public interface CallbackClientInterface extends java.rmi.Remote{
   // implements this interface.
   // @param message - a string containing information for the
   //                  client to process upon being called back.
+    
+    public String getNombre();
+
+    public void setNombre(String nombre);
+
+    public ArrayList<String> getAmigos();
+
+    public void setAmigos(ArrayList<String> amigos);
 
     public String notifyMe(String message) 
       throws java.rmi.RemoteException;

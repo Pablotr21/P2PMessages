@@ -16,7 +16,10 @@ import java.io.*;
 
 public class CallbackServer  {
     
+    private static baseDatos.FachadaBaseDatos fbd;
+    
   public static void main(String args[]) {
+      fbd = new baseDatos.FachadaBaseDatos();
     InputStreamReader is = 
       new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
@@ -28,7 +31,7 @@ public class CallbackServer  {
       int RMIPortNum = Integer.parseInt(portNum);
       startRegistry(RMIPortNum);
       CallbackServerImpl exportedObj = 
-        new CallbackServerImpl();
+        new CallbackServerImpl(fbd);
       registryURL = 
         "rmi://localhost:" + portNum + "/callback";
       Naming.rebind(registryURL, exportedObj);

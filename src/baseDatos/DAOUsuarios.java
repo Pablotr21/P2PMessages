@@ -8,6 +8,7 @@ package baseDatos;
 import aplicacion.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -15,9 +16,8 @@ import java.util.ArrayList;
  */
 public class DAOUsuarios extends AbstractDAO{
     
-    public DAOUsuarios(Connection conexion, aplicacion.FachadaAplicacion fa) {
+    public DAOUsuarios(Connection conexion) {
         super.setConexion(conexion);
-        super.setFachadaAplicacion(fa);
     }
     
     public ArrayList<Usuario> listaUsuarios(){
@@ -158,5 +158,13 @@ public class DAOUsuarios extends AbstractDAO{
                 System.out.println("Imposible cerrar cursores");
             }
         }
+    }
+    
+    public boolean comprobarSesion(String nombre, String clave){
+        return true;
+    }
+    
+    public HashMap<String,ArrayList<String>> obtenerAmigos(){
+        return null;
     }
 }
