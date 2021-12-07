@@ -5,17 +5,24 @@
  */
 package gui;
 
+import aplicacion.CallbackClientInterface;
+import aplicacion.CallbackServerInterface;
+
 /**
  *
  * @author alumnogreibd
  */
 public class VUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VUsuario
-     */
-    public VUsuario() {
+    private final CallbackClientInterface client;
+    private final CallbackServerInterface server;
+    private FachadaGUI fgui;
+    
+    public VUsuario(CallbackClientInterface client, CallbackServerInterface server, FachadaGUI fgui) {
         initComponents();
+        this.client = client;
+        this.server = server;
+        this.fgui = fgui;
     }
 
     /**
@@ -122,11 +129,17 @@ public class VUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-        // TODO add your handling code here:
+        if(NameField.getText().length() > 0 && KeyField.getText().length() > 0 && KeyField.getText().equals(Key2Field.getText())){
+            //Función para envíar a server nuevo usuario
+            
+            this.dispose();
+            fgui.iniciarSesion(client, server);
+        }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        fgui.iniciarSesion(client, server);
     }//GEN-LAST:event_ExitButtonActionPerformed
 
 

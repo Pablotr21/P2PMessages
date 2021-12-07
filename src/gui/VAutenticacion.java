@@ -57,12 +57,6 @@ public class VAutenticacion extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña:");
 
-        Usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsuarioActionPerformed(evt);
-            }
-        });
-
         RegisterButton.setText("Registrarse");
         RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,12 +140,7 @@ public class VAutenticacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioActionPerformed
-
     private void StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartButtonActionPerformed
-        // TODO add your handling code here:
         if(server.comprobarSesion(Usuario.getText(), Arrays.toString(Contraseña.getPassword()))){
             client.setNombre(Usuario.getText());
             fgui.iniciarPrincipal(client, server);
@@ -160,11 +149,12 @@ public class VAutenticacion extends javax.swing.JFrame {
     }//GEN-LAST:event_StartButtonActionPerformed
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-        // TODO add your handling code here:
+        fgui.registrarUsuario(client, server);
+        this.dispose();
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_ExitButtonActionPerformed
 
 

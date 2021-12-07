@@ -20,6 +20,13 @@ public class FachadaGUI {
         va.setVisible(true);
     }
     
+    public void registrarUsuario(CallbackClientInterface c, CallbackServerInterface s){
+        VUsuario vu;
+        
+        vu = new VUsuario(c,s,this);
+        vu.setVisible(true);
+    }
+    
     public void iniciarPrincipal(CallbackClientInterface c, CallbackServerInterface s){
         try {
             vp.setCliente(c);

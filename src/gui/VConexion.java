@@ -100,29 +100,30 @@ public class VConexion extends javax.swing.JFrame {
     private void ConButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConButtonActionPerformed
         if(PortField.getText().length() > 0 && HostField.getText().length() > 0){
             try {
-            int RMIPort;         
-            String hostName;
-            hostName = HostField.getText();
-            RMIPort = Integer.parseInt(PortField.getText()); 
-            String registryURL = 
-                "rmi://localhost:" + PortField.getText() + "/callback";  
-            // find the remote object and cast it to an 
-            //   interface object
-            CallbackServerInterface h =
-              (CallbackServerInterface)Naming.lookup(registryURL);
-            //System.out.println("Lookup completed " );
-            //System.out.println("Server said " + h.sayHello());
-            CallbackClientInterface callbackObj = 
-                new CallbackClientImpl(padre);
-            // register for callback
-            h.registerForCallback(callbackObj);
-            padre.iniciarSesion(callbackObj, h);
-        } // end try 
-        catch (Exception e) {
-            System.out.println(
-                "Exception in CallbackClient: " + e);
-        } // end catch
+                int RMIPort;         
+                String hostName;
+                hostName = HostField.getText();
+                RMIPort = Integer.parseInt(PortField.getText()); 
+                String registryURL = 
+                    "rmi://localhost:" + PortField.getText() + "/callback";  
+                // find the remote object and cast it to an 
+                //   interface object
+                CallbackServerInterface h =
+                  (CallbackServerInterface)Naming.lookup(registryURL);
+                //System.out.println("Lookup completed " );
+                //System.out.println("Server said " + h.sayHello());
+                CallbackClientInterface callbackObj = 
+                    new CallbackClientImpl(padre);
+                // register for callback
+                h.registerForCallback(callbackObj);
+                padre.iniciarSesion(callbackObj, h);
+            } // end try 
+            catch (Exception e) {
+                System.out.println(
+                    "Exception in CallbackClient: " + e);
+            } // end catch
         }
+        this.dispose();
     }//GEN-LAST:event_ConButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
