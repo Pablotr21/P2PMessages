@@ -190,6 +190,11 @@ public class VPrincipal extends javax.swing.JFrame {
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         // TODO add your handling code here:
+        try{
+            servidor.unregisterForCallback(cliente);
+        }catch(RemoteException e){
+            System.out.println(e.getMessage());
+        }
         this.dispose();
     }//GEN-LAST:event_ExitButtonActionPerformed
 
