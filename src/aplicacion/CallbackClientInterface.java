@@ -24,7 +24,7 @@ public interface CallbackClientInterface extends java.rmi.Remote{
 
     public void setAmigos(ArrayList<String> amigos);
 
-    public String notifyMe(String message) 
+    public String notifyMe(String nombre, String message) 
       throws java.rmi.RemoteException;
 
 } // end interface

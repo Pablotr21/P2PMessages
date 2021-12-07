@@ -17,7 +17,7 @@ public class CallbackServerImpl extends UnicastRemoteObject
 
     private Vector clientList;
     private baseDatos.FachadaBaseDatos fbd;
-    private HashMap<String,ArrayList<String>> amigos;
+    private HashMap<String,ArrayList<String>> amigos;//todos los usuarios con sus amigos
 
 
     public CallbackServerImpl(baseDatos.FachadaBaseDatos fbd) throws RemoteException {
@@ -35,17 +35,6 @@ public class CallbackServerImpl extends UnicastRemoteObject
         throws java.rmi.RemoteException {
           return("hello");
     }
-
-    public synchronized void registerForCallback(
-        CallbackClientInterface callbackClientObject)
-        throws java.rmi.RemoteException{
-          // store the callback object into the vector
-          if (!(clientList.contains(callbackClientObject))) {
-             clientList.addElement(callbackClientObject);
-          System.out.println("Registered new client ");
-          doCallbacks();
-        } // end if
-    }  
   
     @Override
     public boolean comprobarSesion(String nombre, String clave){
@@ -64,6 +53,17 @@ public class CallbackServerImpl extends UnicastRemoteObject
         }
         return online;
     }
+    
+    public synchronized void registerForCallback(
+        CallbackClientInterface callbackClientObject)
+        throws java.rmi.RemoteException{
+          // store the callback object into the vector
+          if (!(clientList.contains(callbackClientObject))) {
+             clientList.addElement(callbackClientObject);
+          System.out.println("Registered new client ");
+          doCallbacks(callbackClientObject.getNombre(), " se ha conectado");
+        } // end if
+    }  
 
     // This remote method allows an object client to 
     // cancel its registration for callback
@@ -74,13 +74,14 @@ public class CallbackServerImpl extends UnicastRemoteObject
         throws java.rmi.RemoteException{
         if (clientList.removeElement(callbackClientObject)) {
           System.out.println("Unregistered client ");
+          doCallbacks(callbackClientObject.getNombre(), " se ha desconectado");
         } else {
            System.out.println(
              "unregister: clientwasn't registered.");
         }
       } 
 
-    private synchronized void doCallbacks( ) throws java.rmi.RemoteException{
+    private synchronized void doCallbacks( String nombre, String msg ) throws java.rmi.RemoteException{
       // make callback to each registered client
       System.out.println(
          "**************************************\n"
@@ -91,8 +92,9 @@ public class CallbackServerImpl extends UnicastRemoteObject
         CallbackClientInterface nextClient = 
           (CallbackClientInterface)clientList.elementAt(i);
         // invoke the callback method
-          nextClient.notifyMe("Number of registered clients="
-             +  clientList.size());
+          if(amigos.get(nextClient.getNombre()).contains(nombre)){
+                nextClient.notifyMe(nombre, msg);
+            }
       }// end for
       System.out.println("********************************\n" +
                          "Server completed callbacks ---");

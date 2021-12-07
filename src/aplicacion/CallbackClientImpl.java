@@ -15,11 +15,13 @@ public class CallbackClientImpl extends UnicastRemoteObject
     
     private String nombre;
     private ArrayList<String> amigos;
+    private gui.FachadaGUI fgui;
   
-   public CallbackClientImpl() throws RemoteException {
+   public CallbackClientImpl(gui.FachadaGUI fgui) throws RemoteException {
       super( );
       this.nombre = new String();
       this.amigos = new ArrayList<String>();
+      this.fgui = fgui;
    }
 
     public String getNombre() {
@@ -38,9 +40,9 @@ public class CallbackClientImpl extends UnicastRemoteObject
         this.amigos = amigos;
     }
 
-   public String notifyMe(String message){
-      String returnMessage = "Call back received: " + message;
-      System.out.println(returnMessage);
+   public String notifyMe(String nombre, String message){
+      String returnMessage = "Tu amigo " + nombre + message + "\n";
+      fgui.actividadAmigos(returnMessage);
       return returnMessage;
    }      
 

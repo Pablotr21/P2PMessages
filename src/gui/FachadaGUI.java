@@ -6,9 +6,11 @@ import aplicacion.CallbackServerInterface;
 public class FachadaGUI {
     
     aplicacion.CallbackClient cl;
+    VPrincipal vp;
     
     public FachadaGUI(aplicacion.CallbackClient client) {
         this.cl = client;
+        vp = new VPrincipal();
     }
     
     public void iniciarSesion(CallbackClientInterface c, CallbackServerInterface s){
@@ -19,10 +21,7 @@ public class FachadaGUI {
     }
     
     public void iniciarPrincipal(CallbackClientInterface c, CallbackServerInterface s){
-        VPrincipal vp;
-        
         try {
-            vp = new VPrincipal();
             vp.setCliente(c);
             vp.setServidor(s);
             vp.setVisible(true);
@@ -31,10 +30,14 @@ public class FachadaGUI {
         }
     }
     
+    public void actividadAmigos(String msg){
+        vp.actividadAmigos(msg);
+    }
+    
     public void iniciarVista (){
         VConexion vc;
         
-        vc = new VConexion();
+        vc = new VConexion(this);
         vc.setVisible(true);
     }
 }
