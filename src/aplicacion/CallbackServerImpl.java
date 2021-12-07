@@ -54,7 +54,7 @@ public class CallbackServerImpl extends UnicastRemoteObject
         return online;
     }
     
-    public CallbackClientInterface obtenerPorNombre(String nombre){
+    public CallbackClientInterface obtenerPorNombre(String nombre) throws RemoteException {
         for(int i=0; i<clientList.size(); i++){
             CallbackClientInterface nextClient = 
           (CallbackClientInterface)clientList.elementAt(i);

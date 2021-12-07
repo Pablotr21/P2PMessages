@@ -7,6 +7,7 @@ package gui;
 
 import aplicacion.CallbackClientInterface;
 import aplicacion.CallbackServerInterface;
+import java.rmi.RemoteException;
 import java.util.Arrays;
 
 /**
@@ -141,10 +142,14 @@ public class VAutenticacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void StartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartButtonActionPerformed
-        if(server.comprobarSesion(Usuario.getText(), Arrays.toString(Contraseña.getPassword()))){
-            client.setNombre(Usuario.getText());
-            fgui.iniciarPrincipal(client, server);
-            this.dispose();
+        try{
+            if(server.comprobarSesion(Usuario.getText(), Arrays.toString(Contraseña.getPassword()))){
+                client.setNombre(Usuario.getText());
+                fgui.iniciarPrincipal(client, server);
+                this.dispose();
+            }
+        }catch(RemoteException e){
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_StartButtonActionPerformed
 

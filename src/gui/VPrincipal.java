@@ -7,6 +7,7 @@ package gui;
 
 import aplicacion.CallbackClientInterface;
 import aplicacion.CallbackServerInterface;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -44,7 +45,13 @@ public class VPrincipal extends javax.swing.JFrame {
     
     public void inicializarTablas(){
         ModeloListaString ml = new ModeloListaString();
-        ml.setElementos(servidor.obtenerAmigosOnline(cliente.getNombre()));
+        
+        try{
+            ml.setElementos(servidor.obtenerAmigosOnline(cliente.getNombre()));
+        }catch(RemoteException e){
+            System.out.println(e.getMessage());
+        }
+        
         amigosList.setModel(ml);
     }
     
@@ -183,8 +190,11 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitButtonActionPerformed
 
     private void FriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendButtonActionPerformed
-        // TODO add your handling code here:
+        try{
         padre.iniciarChat(cliente, servidor, servidor.obtenerAmigosOnline(cliente.getNombre()));
+        }catch(RemoteException e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_FriendButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

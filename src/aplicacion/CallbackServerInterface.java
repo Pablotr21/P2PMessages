@@ -36,4 +36,7 @@ public interface CallbackServerInterface extends Remote {
 
     public ArrayList<String> obtenerAmigosOnline(String nombre)
             throws java.rmi.RemoteException;
+    
+    public CallbackClientInterface obtenerPorNombre(String nombre)
+            throws java.rmi.RemoteException;
 }

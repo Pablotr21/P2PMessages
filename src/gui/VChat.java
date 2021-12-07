@@ -7,6 +7,7 @@ package gui;
 
 import aplicacion.CallbackClientInterface;
 import aplicacion.CallbackServerInterface;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -138,8 +139,12 @@ public class VChat extends javax.swing.JFrame {
 
     private void enviarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarbtnActionPerformed
         // TODO add your handling code here:
-        String msg = (nombre.getText() + ": " + mensaje.getText() + "\n");
-        servidor.obtenerPorNombre(nombre.getText()).recibir(msg);
+        try{
+            String msg = (nombre.getText() + ": " + mensaje.getText() + "\n");
+            servidor.obtenerPorNombre(nombre.getText()).recibir(msg);
+        }catch(RemoteException e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_enviarbtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
