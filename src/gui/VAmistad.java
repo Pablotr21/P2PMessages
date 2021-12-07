@@ -19,11 +19,13 @@ public class VAmistad extends javax.swing.JFrame {
     private final CallbackClientInterface client;
     private final CallbackServerInterface server;
     private ArrayList<String> solicitudes;
+    private VPrincipal padre;
     
-    public VAmistad(CallbackClientInterface client, CallbackServerInterface server, ArrayList<String> a) {
+    public VAmistad(CallbackClientInterface client, CallbackServerInterface server, ArrayList<String> a, VPrincipal p) {
         this.solicitudes = a;
         this.client = client;
         this.server = server;
+        this.padre = p;
         initComponents();
         inicializarTablas();
     }
@@ -135,6 +137,7 @@ public class VAmistad extends javax.swing.JFrame {
                     solicitudes.remove(NameField.getText());
                     flag = true;
                     inicializarTablas();
+                    padre.inicializarTablas();
                 }catch(RemoteException e){
                     System.out.println(e.getMessage());
                 }

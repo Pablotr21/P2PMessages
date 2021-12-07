@@ -55,7 +55,7 @@ public class FachadaGUI {
     }
     
     public void verSolucitudes(CallbackClientInterface cliente, CallbackServerInterface servidor, ArrayList<String> solicitudes){
-        VAmistad va = new VAmistad(cliente, servidor, solicitudes);
+        VAmistad va = new VAmistad(cliente, servidor, solicitudes, vp);
         va.setVisible(true);
     }
     
