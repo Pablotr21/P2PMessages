@@ -196,6 +196,7 @@ public class VPrincipal extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_ExitButtonActionPerformed
 
     private void FriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendButtonActionPerformed
