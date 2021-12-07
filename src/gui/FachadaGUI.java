@@ -2,6 +2,7 @@ package gui;
 
 import aplicacion.CallbackClientInterface;
 import aplicacion.CallbackServerInterface;
+import java.util.ArrayList;
 
 public class FachadaGUI {
     
@@ -10,7 +11,7 @@ public class FachadaGUI {
     
     public FachadaGUI(aplicacion.CallbackClient client) {
         this.cl = client;
-        vp = new VPrincipal();
+        vp = new VPrincipal(this);
     }
     
     public void iniciarSesion(CallbackClientInterface c, CallbackServerInterface s){
@@ -46,5 +47,14 @@ public class FachadaGUI {
         
         vc = new VConexion(this);
         vc.setVisible(true);
+    }
+    
+    public void iniciarChat(CallbackClientInterface cliente, CallbackServerInterface servidor, ArrayList<String> amigos){
+        VChat vch = new VChat(this, cliente, servidor, amigos);
+        vch.setVisible(true);
+    }
+    
+    public void recibir(String mensaje){
+        vp.recibir(mensaje);
     }
 }
