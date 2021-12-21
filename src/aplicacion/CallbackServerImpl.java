@@ -142,6 +142,7 @@ public class CallbackServerImpl extends UnicastRemoteObject
         // invoke the callback method
           if(amigos.get(nextClient.getNombre()).contains(nombre)){
                 nextClient.notifyMe(nombre, msg);
+                nextClient.actualizarTablasVP();
             }
       }// end for
       System.out.println("********************************\n" +
